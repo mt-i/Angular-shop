@@ -1,0 +1,99 @@
+<div class="col-12 col-md-6">
+  
+  <!-- register -->
+  <div class="card card-lg">
+      <div class="card-body">
+
+        <!-- Heading -->
+        <h6 class="mb-7">New Customer</h6>
+        <p>create an account to continue buying at the best pharmacy</p>
+
+        <!-- Form -->
+        <form [formGroup]="form" (ngSubmit)="onRegister()">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="sr-only" for="registerFirstName">
+                 Username *
+                </label>
+                <input class="form-control form-control-sm" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="registerFirstName" type="text" placeholder="Username *" required>
+              </div>
+
+            </div>
+            
+            <div class="col-12">
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="sr-only" for="registerEmail">
+                  Email Address *
+                </label>
+                <input class="form-control form-control-sm" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="registerEmail" type="email" placeholder="Email Address *" required>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+              <!-- Password -->
+              <div class="form-group">
+                <label class="sr-only" for="registerPassword">
+                  Password *
+                </label>
+                <input class="form-control form-control-sm" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="registerPassword" type="password" placeholder="Password *" required>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+              <!-- Password -->
+              <div class="form-group">
+                <label class="sr-only" for="registerPasswordConfirm">
+                  Confirm Password *
+                </label>
+                <input class="form-control form-control-sm" formControlName="password2" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" id="registerPasswordConfirm" type="password" placeholder="Confrm Password *" required>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-auto">
+
+              <!-- Link -->
+              <div class="form-group font-size-sm text-muted">
+                By registering your details, you agree with our Terms & Conditions,
+                and Privacy and Cookie Policy.
+              </div>
+
+            </div>
+            <div class="col-12 col-md">
+
+              <!-- Newsletter -->
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" id="registerNewsletter" type="checkbox">
+                  <label class="custom-control-label" for="registerNewsletter">
+                    Sign me up for the Newsletter!
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12">
+
+              <!-- Button -->
+              <button class="btn btn-sm btn-dark" type="submit">
+                Register
+              </button>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+</div>
+
+
+<app-footer></app-footer>

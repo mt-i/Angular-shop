@@ -1,0 +1,81 @@
+<app-nav></app-nav>
+<section class="py-12 grey">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+
+          <!-- Card -->
+          <div class="card card-lg mb-10 mb-md-0">
+            <div class="card-body">
+
+              <!-- Heading -->
+              <h6 class="mb-7">Card Payment</h6>
+              <p>Got your debit/credit card? enter here to complete purchase</p>
+
+              <!-- Form -->
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-12">
+
+                    <!-- cardNumber -->
+                    <div class="form-group">
+                      <label class="sr-only" for="cardNo">
+                        Card Number *
+                      </label>
+                      <input class="form-control form-control-sm" formControlName="cardNumber"  [ngClass]="{ 'is-invalid': submitted && f.cardNumber.errors }" id="logincardNumber" type="cardNumber" placeholder="cardNumber Address *">
+                      <div *ngIf="submitted && f.cardNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.cardNumber.errors.required">Card number is required</div>
+                    </div>
+                    </div>
+
+                  </div>
+                  <div class="col-12">
+
+                    <!-- cvv -->
+                    <div class="form-group">
+                      <label class="sr-only" for="cvv">
+                        cvv *
+                      </label>
+                      <input class="form-control form-control-sm" formControlName="cvv" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" id="logincvv" type="cvv" placeholder="cvv *">
+                      <div *ngIf="submitted && f.cvv.errors" class="invalid-feedback">
+                        <div *ngIf="f.cvv.errors.required">cvv is required</div>
+                    </div>
+                    </div>
+
+                  </div>
+                  
+                  <div class="col-12">
+
+                    <!-- expiryDate -->
+                    <div class="form-group">
+                      <label class="sr-only" for="ExpiryDate">
+                        Expiry Date*
+                      </label>
+                      <input class="form-control form-control-sm" formControlName="expiryDate" [ngClass]="{ 'is-invalid': submitted && f.expiryDate.errors }" id="loginexpiryDate" type="expiryDate" placeholder="expiryDate *">
+                      <div *ngIf="submitted && f.expiryDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.expiryDate.errors.required">Expiry year and month is required</div>
+                    </div>
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-auto">
+
+                  </div>
+                  <div class="col-12">
+
+                    <!-- Button -->
+                    <button class="btn btn-sm btn-dark" type="submit">
+                      Pay
+                    </button>
+
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</section>

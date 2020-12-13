@@ -1,0 +1,86 @@
+<app-nav></app-nav>
+<!-- PRODUCT -->
+<section>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-12 margin-20">
+          <div class="row">
+            <div class="col-12 col-md-6">
+
+              <!-- Card -->
+              <div class="card">
+
+                <!-- Badge -->
+                <!-- <div class="badge badge-primary card-badge text-uppercase">
+                  Sale
+                </div> -->
+
+                <!-- Slider -->
+              
+                <div>
+
+                  <!-- Item -->
+                
+                    <img src="{{sharedData.product_pic}}" alt="..." class="card-img-top">
+              
+                </div>
+
+              </div>
+
+              
+
+            </div>
+            <div class="col-12 col-md-6 pl-lg-10">
+
+              <!-- Header -->
+
+              <!-- Heading -->
+              <h3 class="mb-2">{{sharedData.name}}</h3>
+
+              <!-- Price -->
+              <div class="mb-7">
+                <span class="ml-1 font-size-h5 font-weight-bolder text-primary">{{sharedData.price}}</span>
+                <span class="font-size-sm ml-1">(In Stock)</span>
+              </div>
+
+              <div class="mb-7">  
+              <span class="ml-1  font-weight-bolder text-primary">{{sharedData.discription}}</span>
+                
+              </div>
+
+              <!-- Form -->
+              <form>
+               
+                <div class="form-group">
+
+                  <div class="form-row mb-7">
+                    <div class="col-12 col-lg-auto">
+
+                    </div>
+                    <div class="col-12 col-lg">
+
+                      <!-- Submit -->
+                      <button  (click)="addItemToCart(sharedData.id)" type="submit" class="btn btn-block btn-dark mb-2">
+                        Add to Cart <i class="fe fe-shopping-cart ml-2"></i>
+                      </button>
+
+                    </div>
+                    
+                  </div>
+
+                 
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+
+

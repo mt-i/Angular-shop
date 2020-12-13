@@ -1,0 +1,115 @@
+<app-nav></app-nav>
+<section class="pt-7 pb-12 grey">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+  
+              <!-- Heading -->
+              <h3 class="mb-10 text-center">BUY OTC MEDICATION</h3>
+  
+            </div>
+          </div>
+          
+          
+
+          <div class="products">
+
+              <div class="row">
+                  <div *ngFor="let item of productsList add-border" class="col-6 col-md-4">
+
+                      <!-- Card -->
+                      <div class="card mb-7 add-border">
+      
+                        <!-- Image -->
+                        <div class="card-img">
+      
+                          <!-- Image -->
+                          <a class="card-img-hover" (click)="goto(item.id,item.name)">
+                            <img class="card-img-top card-img-back" src="{{item.product_pic}}" alt="...">
+                            <img class="card-img-top card-img-front" src="{{item.product_pic}}" alt="...">
+                          </a>
+      
+                          <!-- Actions -->
+                          <div class="card-actions">
+                            <span class="card-action">
+                              <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                                <i class="fe fe-eye"></i>
+                              </button>
+                            </span>
+                            <span class="card-action">
+                              <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                                <i class="fe fe-shopping-cart"></i>
+                              </button>
+                            </span>
+                            <span class="card-action">
+                              <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                                <i class="fe fe-heart"></i>
+                              </button>
+                            </span>
+                          </div>
+      
+                        </div>
+      
+                        <!-- Body -->
+                        <div class="card-body px-0">
+      
+                          <!-- Category -->
+                          <div class="font-size-xs">
+                            <p class="text-muted" (click)="goto(item.id,item.name)">{{item.name}}</p>
+                          </div>
+      
+                          <!-- Title -->
+                          <div class="font-weight-bold">
+                            <a class="text-body" (click)="goto(item.id,item.name)">
+                                {{item.discription | slice:0:60 }}
+                            </a>
+                          </div>
+      
+                          <!-- Price -->
+                          <div class="font-weight-bold text-muted">
+                            {{item.price}}
+                          </div>
+      
+                        </div>
+      
+                      </div>
+      
+                    </div>
+              </div>
+              
+              
+            
+           <div class="show-more mt">
+             <a href="#">show more</a>
+           </div>
+        </div>
+          <div class="row">
+            <div class="col-12">
+              <!-- Progress -->
+              <div class="row justify-content-center mt-7">
+                <div class="col-12 text-center">
+  
+                  <!-- Caption -->
+                  <p class="font-size-sm text-muted">
+                    Showing {{showing}} of {{showing}} products
+                  </p>
+  
+                  <!-- Progress -->
+                  <div class="progress mx-auto mb-7" style="max-width: 250px;">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  
+                  
+                  <!-- Button -->
+                  <a *ngIf="showing > 8" class="btn btn-sm btn-outline-dark" href="#!">
+                    Load more
+                  </a>
+  
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </section>
+<app-footer></app-footer>
