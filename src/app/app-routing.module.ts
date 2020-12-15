@@ -1,3 +1,6 @@
+import { AddBillingInfoComponent } from './shop/add-billing-info/add-billing-info.component';
+import { BillingInfoComponent } from './shop/billing-info/billing-info.component';
+import { PinOtpComponent } from './shop/pin-otp/pin-otp.component';
 import { SearchComponent } from './shop/search/search.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -75,6 +78,18 @@ const routes: Routes = [
   {
     path : 'contact',
     component : ContactComponent
+  },
+  {
+    path : 'pin',
+    component : PinOtpComponent
+  },
+  {
+    path : 'billing-info',
+    component : BillingInfoComponent
+  },
+  {
+    path : 'ad-billing-info',
+    component : AddBillingInfoComponent
   }
 
 ];

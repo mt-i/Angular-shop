@@ -25,14 +25,14 @@
       
                           <!-- Image -->
                           <a class="card-img-hover" (click)="goto(item.id,item.name)">
-                            <img class="card-img-top card-img-back" src="{{item.product_pic}}" alt="...">
+                            <img class="card-img-top card-img-back" (click)="goto(item.id,item.name)" src="{{item.product_pic}}" alt="...">
                             <img class="card-img-top card-img-front" src="{{item.product_pic}}" alt="...">
                           </a>
       
                           <!-- Actions -->
                           <div class="card-actions">
                             <span class="card-action">
-                              <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                              <button class="btn btn-xs btn-circle btn-white-primary" (click)="goto(item.id,item.name)" data-toggle="modal" data-target="#modalProduct">
                                 <i class="fe fe-eye"></i>
                               </button>
                             </span>

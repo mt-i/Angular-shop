@@ -32,12 +32,12 @@ export class ShopService {
   }
 
   search(q: string, filters: object): Observable<any>{
-    return this.http.get(apiUrl + '/open-products/?search=' + q, httpOptions).pipe(
+    return this.http.get(`${apiUrl}/open-products/?app_name=mocca-med&search=${q}`, httpOptions).pipe(
       tap(_ => console.log('search complete'))
     );
   }
 
-  getCart(){
+  getCart() {
     return new Promise( resolve => {
       this.http.get(apiv2 + '/cart/?format=json').subscribe(data =>{
         resolve(data);

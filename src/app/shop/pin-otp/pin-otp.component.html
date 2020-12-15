@@ -1,1 +1,47 @@
-<p>pin-otp works!</p>
+<app-nav></app-nav>
+<section class="py-12 grey">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+
+          <!-- Card -->
+          <div class="card card-lg mb-10 mb-md-0">
+            <div class="card-body">
+
+              <!-- Heading -->
+              <h6 class="mb-7">{{message}}</h6>
+
+              <!-- Form -->
+              <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-12">
+
+                    <!-- cardNumber -->
+                    <div class="form-group">
+                      <label class="sr-only" for="{{state}}">
+                        {{state}} *
+                      </label>
+                      <input class="form-control form-control-sm" [(ngModel)]="userInput.value" name="value" id="cardNo" type="text" placeholder="{{state}} *" appNumbersOnly>
+                     
+                    </div>
+
+                  </div>
+                 
+                  <div class="col-12">
+
+                    <!-- Button -->
+                    <button class="btn btn-sm btn-dark" type="submit">
+                      Submit
+                    </button>
+
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</section>

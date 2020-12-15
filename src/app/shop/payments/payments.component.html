@@ -22,9 +22,9 @@
                       <label class="sr-only" for="cardNo">
                         Card Number *
                       </label>
-                      <input class="form-control form-control-sm" formControlName="cardNumber"  [ngClass]="{ 'is-invalid': submitted && f.cardNumber.errors }" id="logincardNumber" type="cardNumber" placeholder="cardNumber Address *">
-                      <div *ngIf="submitted && f.cardNumber.errors" class="invalid-feedback">
-                        <div *ngIf="f.cardNumber.errors.required">Card number is required</div>
+                      <input class="form-control form-control-sm" formControlName="cardNo"  [ngClass]="{ 'is-invalid': submitted && f.cardNo.errors }" id="cardNo" type="text" placeholder="cardNumber Address *" appNumbersOnly>
+                      <div *ngIf="submitted && f.cardNo.errors" class="invalid-feedback">
+                        <div *ngIf="f.cardNo.errors.required">Card number is required</div>
                     </div>
                     </div>
 
@@ -36,7 +36,7 @@
                       <label class="sr-only" for="cvv">
                         cvv *
                       </label>
-                      <input class="form-control form-control-sm" formControlName="cvv" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" id="logincvv" type="cvv" placeholder="cvv *">
+                      <input class="form-control form-control-sm" formControlName="cvv" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" id="cvv" type="cvv" placeholder="cvv *" appNumbersOnly>
                       <div *ngIf="submitted && f.cvv.errors" class="invalid-feedback">
                         <div *ngIf="f.cvv.errors.required">cvv is required</div>
                     </div>
@@ -51,7 +51,7 @@
                       <label class="sr-only" for="ExpiryDate">
                         Expiry Date*
                       </label>
-                      <input class="form-control form-control-sm" formControlName="expiryDate" [ngClass]="{ 'is-invalid': submitted && f.expiryDate.errors }" id="loginexpiryDate" type="expiryDate" placeholder="expiryDate *">
+                      <input class="form-control form-control-sm" formControlName="expiryDate" [ngClass]="{ 'is-invalid': submitted && f.expiryDate.errors }" id="expiryDate" type="expiryDate" placeholder="expiryDate *" appNumbersOnly>
                       <div *ngIf="submitted && f.expiryDate.errors" class="invalid-feedback">
                         <div *ngIf="f.expiryDate.errors.required">Expiry year and month is required</div>
                     </div>

@@ -1,3 +1,4 @@
+import { LoaderService } from './../_services/loader.service';
 import {
     HttpRequest,
     HttpHandler,
@@ -14,48 +15,59 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+    private requests: HttpRequest<any>[] = [];
+    private totalRequests = 0;
+    constructor(
+      private router: Router,
+      private loaderService: LoaderService
+      ) {}
 
-    constructor(private router: Router) {}
 
-intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-const token = 'Token ' + localStorage.getItem('token');
+    const token = 'Token ' + localStorage.getItem('token');
+    this.totalRequests++;
+    this.loaderService.isLoading.next(true);
 
-if (token) {
-  request = request.clone({
-    setHeaders: {
-      'Authorization': token
+    if (token) {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': token
+        }
+      });
     }
-  });
-}
 
-if (!request.headers.has('Content-Type')) {
-  request = request.clone({
-    setHeaders: {
-      'content-type': 'application/json'
+    if (!request.headers.has('Content-Type')) {
+      request = request.clone({
+        setHeaders: {
+          'content-type': 'application/json'
+        }
+      });
     }
-  });
-}
 
-request = request.clone({
-  headers: request.headers.set('Accept', 'application/json')
-});
+    request = request.clone({
+      headers: request.headers.set('Accept', 'application/json')
+    });
 
-return next.handle(request).pipe(
-  map((event: HttpEvent<any>) => {
-    if (event instanceof HttpResponse) {
-      console.log('event--->>>', event);
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          console.log('event--->>>', event);
+          this.totalRequests--;
+          if (this.totalRequests === 0) {
+            this.loaderService.isLoading.next(false);
+          }
+        }
+        return event;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          if (error.error.success === false) {
+          } else {
+            this.router.navigate(['login']);
+          }
+        }
+        return throwError(error);
+      }));
     }
-    return event;
-  }),
-  catchError((error: HttpErrorResponse) => {
-    if (error.status === 401) {
-      if (error.error.success === false) {
-      } else {
-        this.router.navigate(['login']);
-      }
-    }
-    return throwError(error);
-  }));
-}
 }

@@ -21,6 +21,8 @@ import { SearchComponent } from './shop/search/search.component';
 import { BillingInfoComponent } from './shop/billing-info/billing-info.component';
 import { AddBillingInfoComponent } from './shop/add-billing-info/add-billing-info.component';
 import { PinOtpComponent } from './shop/pin-otp/pin-otp.component';
+import { NumbersOnlyDirective } from './_services/numbers-only.directive';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { PinOtpComponent } from './shop/pin-otp/pin-otp.component';
     SearchComponent,
     BillingInfoComponent,
     AddBillingInfoComponent,
-    PinOtpComponent],
+    PinOtpComponent,
+    NumbersOnlyDirective,
+    LoaderComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
     }
   }
 
-  search() {
+  search(): void {
     const navigationExtras: NavigationExtras = {
       state: {
         q: this.q.search

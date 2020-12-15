@@ -43,9 +43,17 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addItemToCart(productName: any) {
-    const products = [];
-    products.push(productName);
+  addItemToCart(productName: any): void {
+    let products = JSON.parse(localStorage.getItem('cart-items'));
+    console.log(products);
+    if (products != null){
+      products.push(productName);
+    }
+    else {
+      products = [];
+      products.push(productName);
+    }
+    localStorage.setItem('cart-items', JSON.stringify(products));
     this.shopService.addToCart({'products': products}, '1').then(res => {
       console.log(res);
       // this.store.set('cart', { products: products});
