@@ -37,9 +37,16 @@ export class ShopService {
     );
   }
 
+  addOrder(payload: any): Observable<any>{
+    return this.http.post(`${apiUrl}/user-orders/${q}`, httpOptions).pipe(
+      tap(_ => console.log('search complete'))
+    );
+  }
+
+
   getCart() {
     return new Promise( resolve => {
-      this.http.get(apiv2 + '/cart/?format=json').subscribe(data =>{
+      this.http.get(apiv2 + '/cart/?format=json').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
@@ -47,7 +54,7 @@ export class ShopService {
     });
   }
 
-  addToCart(patchData: any, cartId: any){
+  addToCart(patchData: any, cartId: any) {
     return new Promise(resolve => {
       this.http.patch(apiv2 + '/safe-ucart/' + cartId + '/?format=json', patchData, httpOptions).subscribe(data => {
         resolve(data);
@@ -56,4 +63,5 @@ export class ShopService {
       });
     });
   }
+
 }

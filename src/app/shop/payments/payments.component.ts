@@ -1,3 +1,4 @@
+import { ShopService } from './../../_services/shop.service';
 import { IpService } from './../../_services/ip.service';
 import { PaymentsService } from './../../_services/payments.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
@@ -28,6 +29,7 @@ export class PaymentsComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private payApi: PaymentsService,
     private ipApi: IpService,
+    private shopService: ShopService,
   ) { }
 
   ngOnInit(): void {
@@ -104,6 +106,21 @@ export class PaymentsComponent implements OnInit {
           };
           this.toast.showInfo('OTP', 'Validate payment check your sms/email for otp');
           this.router.navigate(['/pin'], navigationExtras);
+        }
+
+        if (data.status === 3) {
+          // get Username
+          // make order here
+          const newOrder = {
+            name: 'mocca-med' + 'username' + Date(),
+            customer: 'custome_name',
+            meta: cart,
+          };
+          this.shopService.addOrder(cart).subscribe(data => {
+            console.log(data);
+            this.toast.showSuccess('Successfully Paid', 'Track Order');
+            this.router.navigate(['track']);
+          });
         }
       }, err => {
         console.log(err);
