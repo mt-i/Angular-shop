@@ -37,8 +37,14 @@ export class ProductDetailsComponent implements OnInit {
         const result = this.router.getCurrentNavigation().extras.state.product;
         this.sharedData = result[0];
       }
-    });
-  }
+      else {
+        const productId = this.route.snapshot.params.id;
+        this.shopService.productDetails(productId).subscribe(data => {
+          this.sharedData = data;
+        });
+      }
+      });
+    }
 
   ngOnInit(): void {
   }
