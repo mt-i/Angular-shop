@@ -3,7 +3,7 @@
 
 # Fence
 
-Angular shop for selling steel works and fences.
+Angular shop for selling stuff. medication..
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
