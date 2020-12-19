@@ -38,7 +38,7 @@ export class ShopService {
   }
 
   addOrder(payload: any): Observable<any>{
-    return this.http.post(`${apiUrl}/user-orders/${q}`, httpOptions).pipe(
+    return this.http.post(`${apiUrl}/user-orders/`, payload, httpOptions).pipe(
       tap(_ => console.log('search complete'))
     );
   }
@@ -52,6 +52,12 @@ export class ShopService {
         console.log(err);
       });
     });
+  }
+
+  observeCart(): Observable<any> {
+    return this.http.get(apiv2 + '/cart/', httpOptions).pipe(
+      tap(_ => console.log('got cart'))
+    );
   }
 
   addToCart(patchData: any, cartId: any) {

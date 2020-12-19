@@ -1,3 +1,4 @@
+import { ShopService } from './../../_services/shop.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastService,
+    private shopService: ShopService,
     ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
-  onSubmit(){
+  onSubmit(): void {
 
     this.submitted = true;
 
@@ -61,6 +63,8 @@ export class LoginComponent implements OnInit {
       this.cart.fetchUpdatedCart();
       this.router.navigate([this.returnUrl]);
       this.toast.showSuccess('Great', 'login Successful');
+      this.getUser();
+      this.getUserCart();
       console.log(res);
     }, err => {
       console.log(err);
@@ -69,5 +73,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  getUser(): void {
+    this.restApi.user().subscribe(data => {
+      localStorage.setItem('userId', data[0].id);
+    });
+  }
+
+  getUserCart(): void {
+    this.shopService.observeCart().subscribe( data => {
+      localStorage.setItem('userId', data.id);
+    });
+  }
 
 }

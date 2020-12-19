@@ -1,3 +1,4 @@
+import { ShopService } from './../../_services/shop.service';
 import { PaymentsService } from './../../_services/payments.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,6 +21,7 @@ export class PinOtpComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: ToastService,
     private payApi: PaymentsService,
+    private shopService: ShopService,
   ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -40,9 +42,7 @@ export class PinOtpComponent implements OnInit {
         flw: 'Change this later',
         payload: JSON.parse(localStorage.getItem('payload')),
       };
-      console.log(this.payload);
       this.payApi.update(this.payload).subscribe(data => {
-        console.log(data);
         if (data.results.validationRequired === true){
           this.toast.showInfo('OTP', 'Validate payment check your sms/email for otp');
           this.message = 'Enter OTP from your bank';
@@ -55,6 +55,9 @@ export class PinOtpComponent implements OnInit {
       });
     }
     else {
+      if (this.flowRef === ''){
+        this.flowRef = localStorage.getItem('flwRef');
+      }
       this.payload = {
         otp: this.userInput.value,
         txRef: 'xx-xxxxxxxxxx',
@@ -62,7 +65,26 @@ export class PinOtpComponent implements OnInit {
       };
       this.payApi.validate(this.payload).subscribe(data => {
         // Verify payment
-        console.log('validated');
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        const newOrder = {
+          name: 'mocca-med',
+          customer: Number(localStorage.getItem('userId')),
+          meta: cart,
+        };
+        const verifyPayload = {
+          txRef: data.txRef,
+        };
+        this.payApi.verify(verifyPayload).subscribe( results => {
+          if (results.status === 3 || results.transactionComplete === true){
+            this.shopService.addOrder(newOrder).subscribe( res => {
+              this.toast.showSuccess('Successfully Paid', 'Track Order');
+              this.router.navigate(['track']);
+            });
+          }
+          else{
+            this.toast.showError('Payment Verification Failed', 'PAYMENT ERROR');
+          }
+        });
       }, err => {
         this.toast.showError('something happened trying to validate pay, retry card', 'validation Error');
         this.router.navigate(['/payments']);

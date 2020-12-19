@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
   q = {
     search: ''
   };
-  cartItems = 1;
+  cartItems = 0;
   showing: 0;
   productId: any;
   cartItem: any;

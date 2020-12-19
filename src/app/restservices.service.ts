@@ -37,6 +37,12 @@ export class RestservicesService {
     );
   }
 
+  user(): Observable<any> {
+    return this.http.get(apiUrl + 'apis/user/', httpOptions).pipe(
+      tap(_ => console.log('got user'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead

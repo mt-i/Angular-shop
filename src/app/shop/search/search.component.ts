@@ -4,6 +4,7 @@ import { ProductDetailsComponent } from './../product-details/product-details.co
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { NavComponent } from 'src/app/shared/nav/nav.component';
 
 
 @Component({
@@ -66,7 +67,8 @@ export class SearchComponent implements OnInit {
       products.push(productName);
     }
     localStorage.setItem('cart-items', JSON.stringify(products));
-    this.shopService.addToCart({'products': products}, '1').then(res => {
+    const cartId = localStorage.getItem('cart-id');
+    this.shopService.addToCart({'products': products}, cartId).then(res => {
       console.log(res);
       // this.store.set('cart', { products: products});
       this.toast.showSuccess('Great', 'item added to cart');

@@ -84,10 +84,11 @@ export class PaymentsComponent implements OnInit {
     this.payApi.charge(payload).subscribe(
       data => {
         console.log(data);
+        localStorage.setItem('flwRef', data.flwRef);
         if (data.status === 0){
           const navigationExtras: NavigationExtras = {
             state: {
-              value: 'pin'
+              value: 'pin',
             }
           };
           this.toast.showInfo('PIN', 'Your card requires your pin');
@@ -116,7 +117,7 @@ export class PaymentsComponent implements OnInit {
             customer: 'custome_name',
             meta: cart,
           };
-          this.shopService.addOrder(cart).subscribe(data => {
+          this.shopService.addOrder(newOrder).subscribe( data => {
             console.log(data);
             this.toast.showSuccess('Successfully Paid', 'Track Order');
             this.router.navigate(['track']);
