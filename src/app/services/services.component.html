@@ -3,39 +3,14 @@
     <h3>Featured</h3>
     <div class="products">
         <div class="card-deck">
-          <div class="card add-border">
-            <img src="../../assets/images/oills.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Oxycoton aspirin</h5>
-              <p class="card-text"><small>has supporting text below as a natural lead-in</small></p>
-              <p class="card-text text-right price">R30</p>
+          <div *ngFor="let item of featuredProducts" class="card add-border">
+            <img src="{{item.product_pic}}" (click)="goto(item.id,item.name)" class="card-img-top" alt="...">
+            <div class="card-body" (click)="goto(item.id,item.name)">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text"><small>{{item.discription}}</small></p>
+              <p class="card-text text-right price">R{{item.price}}</p>
             </div>
           </div>
-            <div class="card add-border">
-              <img src="../../assets/images/oills.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Oxycoton aspirin</h5>
-                <p class="card-text"><small>has supporting text below as a natural lead-in</small></p>
-                <p class="card-text text-right price">R30</p>
-              </div>
-            </div>
-              <div class="card add-border">
-                <img src="../../assets/images/oills.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Oxycoton aspirin</h5>
-                  <p class="card-text"><small>has supporting text below as a natural lead-in</small></p>
-                  <p class="card-text text-right price">R30</p>
-                </div>
-              </div>
-
-                <div class="card add-border">
-                    <img src="../../assets/images/oills.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Oxycoton aspirin</h5>
-                      <p class="card-text"><small>has supporting text below as a natural lead-in</small></p>
-                      <p class="card-text text-right price">R30</p>
-                    </div>
-                  </div>
             
           </div>
        <div class="show-more mt">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SearchComponent } from '../shop/search/search.component';
+import { ShopService } from '../_services/shop.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,13 @@ export class HomeComponent implements OnInit {
   showing: 0;
   productId: any;
   cartItem: any;
+  featuredProducts= [];
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private doSearch: SearchComponent,
+    private shopService: ShopService,
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,18 @@ export class HomeComponent implements OnInit {
       this.doSearch.search(this.q.search);
     }
     this.router.navigate(['products/'], navigationExtras);
+  }
+
+  featured(): void {
+    
+
+    var qStrings = ["Dr lee Natural Spanish", "immuno health", "Seed oil","Ds 24"];
+    qStrings.forEach(item => {
+      this.shopService.search(item,{}).subscribe( data => {
+        this.featuredProducts.push(data)
+      })
+    });
+    
   }
 
 }

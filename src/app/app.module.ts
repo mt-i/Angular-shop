@@ -48,7 +48,8 @@ import { LoaderComponent } from './shared/loader/loader.component';
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'csrftoken',
-      headerName: 'X-CSRFToken' }
+      headerName: 'X-CSRFToken',
+     }
     ),
     FormsModule,
     // FormBuilder,
@@ -67,6 +68,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     },
     SlugifyPipe,
     SearchComponent,
+    NavComponent,
   ],
   bootstrap: [AppComponent]
 })
