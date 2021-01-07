@@ -22,6 +22,14 @@ export class CartComponent implements OnInit {
   };
 
   products = [];
+  noAddress = true;
+  address = {
+    name: "",
+    address: "",
+    lat: 0,
+    lng: 0,
+    user:0,
+  }
 
   constructor(
     private rest: ShopService,
@@ -32,6 +40,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUpdatedCart();
+    if (localStorage.getItem('location')){
+      this.noAddress = false;
+      this.address = JSON.parse(localStorage.getItem('location'))[0]
+    }
   }
 
 
