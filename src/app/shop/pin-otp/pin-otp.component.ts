@@ -68,7 +68,7 @@ export class PinOtpComponent implements OnInit {
         const cart = JSON.parse(localStorage.getItem('cart'));
         const newOrder = {
           name: 'mocca-med',
-          customer: Number(localStorage.getItem('userId')),
+          customer: cart.user,
           meta: cart,
         };
         const verifyPayload = {

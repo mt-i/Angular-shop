@@ -84,11 +84,11 @@ const routes: Routes = [
     component : PinOtpComponent
   },
   {
-    path : 'billing-info',
+    path : 'add-location',
     component : BillingInfoComponent
   },
   {
-    path : 'ad-billing-info',
+    path : 'edit-location',
     component : AddBillingInfoComponent
   }
 

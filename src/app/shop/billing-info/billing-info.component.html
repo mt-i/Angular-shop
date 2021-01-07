@@ -1,1 +1,57 @@
-<p>billing-info works!</p>
+<app-nav></app-nav>
+<div class="col-12 col-md-6">
+  
+  <!-- register -->
+  <div class="card card-lg">
+      <div class="card-body">
+
+        <!-- Heading -->
+        <h6 class="mb-7">Add Address</h6>
+        <p>add address we should deliver to. Can also be tried as billing address for card that requires it</p>
+
+        <!-- Form -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="sr-only" for="Name">
+                 Place name *
+                </label>
+                <input class="form-control form-control-sm" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" id="Name" type="text" placeholder="Place Name *" required>
+              </div>
+
+            </div>
+            
+            <div class="col-12">
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="sr-only" for="Address">
+                  Physical Address *
+                </label>
+                <input class="form-control form-control-sm" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" id="Address" type="text" placeholder="Physical Address *" required>
+              </div>
+
+            </div>
+        
+            <div class="col-12">
+
+              <!-- Button -->
+              <button class="btn btn-sm btn-dark" type="submit">
+                Submit
+              </button>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+</div>
+
+
+<app-footer></app-footer>

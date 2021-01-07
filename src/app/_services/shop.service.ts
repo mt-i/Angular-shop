@@ -70,4 +70,17 @@ export class ShopService {
     });
   }
 
+  addLocation(payload: object): Observable<any> {
+    return this.http.post(apiUrl + '/location/',payload,httpOptions).pipe(
+      tap(_ => console.log('added loc'))
+    );
+  }
+
+  Location(): Observable<any> {
+    return this.http.post(apiUrl + '/location/',httpOptions).pipe(
+      tap(_ => console.log('added loc'))
+    );
+  }
+
+
 }

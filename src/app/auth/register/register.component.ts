@@ -27,10 +27,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
-      password2: ['', Validators.required],
+      username: ['', [ Validators.required]],
+      email: ['', [ Validators.required, Validators.email]],
+      password1: ['', [ Validators.required]],
+      password2: ['', [ Validators.required]],
   });
 
     // get return url from route parameters or default to '/'
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
-
+  
 
   onRegister(){
 
@@ -57,13 +57,15 @@ export class RegisterComponent implements OnInit {
       const auth = {
         username: this.f.username.value,
         email: this.f.email.value,
-        password: this.f.password.value
+        password1: this.f.password1.value,
+        password2: this.f.password2.value
       };
 
       this.restApi.register(auth)
       .subscribe(res => {
         localStorage.setItem('token', res.key);
         this.cart.fetchUpdatedCart();
+        this.getUser()
         this.toast.showSuccess('Great', 'Successfully registered');
         this.router.navigate([this.returnUrl]);
         console.log(res);
@@ -71,6 +73,12 @@ export class RegisterComponent implements OnInit {
         console.log(err);
         this.loading = false;
         this.toast.showError('Oops', 'Could not register');
+      });
+    }
+
+    getUser(): void {
+      this.restApi.user().subscribe(data => {
+        localStorage.setItem('userId', data[0].id);
       });
     }
 }

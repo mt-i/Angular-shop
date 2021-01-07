@@ -30,7 +30,7 @@ export class RestservicesService {
   }
 
   register(accountInfo): Observable<any> {
-    const url = apiUrl + 'rest-auth/register/';
+    const url = apiUrl + 'rest-auth/registration/';
     return this.http.post(url, accountInfo, httpOptions).pipe(
       tap(_ => this.isLoggedIn = true),
       catchError(this.handleError('register', []))
