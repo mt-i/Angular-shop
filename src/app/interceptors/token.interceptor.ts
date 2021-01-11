@@ -54,6 +54,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           console.log('event--->>>', event);
           this.totalRequests--;
+          this.loaderService.isLoading.next(false);
           if (this.totalRequests === 0) {
             this.loaderService.isLoading.next(false);
           }
