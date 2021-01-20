@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SearchComponent } from '../shop/search/search.component';
 import { ShopService } from '../_services/shop.service';
@@ -24,9 +25,15 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private doSearch: SearchComponent,
     private shopService: ShopService,
+    private title: Title,
+    private metaTagService: Meta,
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Home | Mocca-med');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Best Pharmacy and Online store, we care about your health' }
+    );
   }
 
   search(): void {

@@ -4,6 +4,7 @@ import { RestservicesService } from '../../restservices.service';
 import { CartComponent } from '../../shop/cart/cart.component';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastService,
+    private title: Title,
+    private metaTagService: Meta,
     ) { }
 
   ngOnInit(): void {
@@ -31,7 +34,12 @@ export class RegisterComponent implements OnInit {
       email: ['', [ Validators.required, Validators.email]],
       password1: ['', [ Validators.required]],
       password2: ['', [ Validators.required]],
-  });
+    });
+
+    this.title.setTitle('Sign Up | Mocca-med');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Register an new account to continue buying, and scheduling medication from mocca-med online store' }
+    );
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pharmacy';

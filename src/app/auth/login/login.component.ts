@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CartComponent } from '../../shop/cart/cart.component';
 import { RestservicesService } from '../../restservices.service';
 import { ToastService } from './../../toast.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +25,19 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toast: ToastService,
     private shopService: ShopService,
+    private metaTagService: Meta,
+    private  title: Title
     ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: ['', [ Validators.required, Validators.email]],
       password: ['', [ Validators.required]]
-  });
+    });
+    this.title.setTitle('Sign In | Mocca-med');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Login to continue buying medication from mocca-med online store' }
+    );
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pharmacy';

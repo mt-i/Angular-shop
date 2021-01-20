@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { NavComponent } from 'src/app/shared/nav/nav.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -24,6 +25,8 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private slugifyPipe: SlugifyPipe,
     private toast: ToastService,
+    private title: Title,
+    private metaTagService: Meta,
   ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -33,6 +36,10 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.title.setTitle('Shop Meds | Mocca-med');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Find and buy over the counter medication here. Improve your health with some boosters' }
+    );
     this.products();
   }
 

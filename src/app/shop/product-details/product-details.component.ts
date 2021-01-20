@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShopService } from './../../_services/shop.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { NavComponent } from 'src/app/shared/nav/nav.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-details',
@@ -32,20 +33,28 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: ToastService,
     private nav: NavComponent,
+    private title: Title,
+    private metaTagService: Meta
     // public store: Storage,
   ) {
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        const result = this.router.getCurrentNavigation().extras.state.product;
-        this.sharedData = result[0];
-      }
-      else {
-        const productId = this.route.snapshot.params.id;
-        this.shopService.productDetails(productId).subscribe(data => {
-          this.sharedData = data;
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          const result = this.router.getCurrentNavigation().extras.state.product;
+          this.sharedData = result[0];
+        }
+        else {
+          const productId = this.route.snapshot.params.id;
+          this.shopService.productDetails(productId).subscribe(data => {
+            this.sharedData = data;
+          });
+        }
         });
-      }
-      });
+      
+      this.title.setTitle( this.sharedData.name + ' | Mocca-med');
+      this.metaTagService.updateTag(
+        { name: 'description', content: 'Buy |' + this.sharedData.discription}
+      );
+
     }
 
   ngOnInit(): void {

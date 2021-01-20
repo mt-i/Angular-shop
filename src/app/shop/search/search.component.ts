@@ -36,6 +36,7 @@ export class SearchComponent implements OnInit {
        }
 
   ngOnInit(): void {
+    
   }
 
    search(qString: string): void{
