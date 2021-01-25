@@ -5,8 +5,17 @@ import { Observable, of, throwError } from 'rxjs';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
 };
+
+const options = {
+  observe: "response", // to display the full response
+  responseType: "json"
+};
+
+
 const apiUrl = 'http://www.khonis.co.za/';
 
 
@@ -19,9 +28,9 @@ export class RestservicesService {
 
   constructor(private http: HttpClient) { }
 
-  login(logins): Observable<any> {
+  login(logins:object): Observable<any> {
     const url = apiUrl + 'rest-auth/login/';
-    return this.http.post(url, logins, httpOptions).pipe(
+    return this.http.post(url, logins,{observe: "response"}).pipe(
       tap(_ =>
         this.isLoggedIn = true
         ),
@@ -29,7 +38,7 @@ export class RestservicesService {
     );
   }
 
-  register(accountInfo): Observable<any> {
+  register(accountInfo:object): Observable<any> {
     const url = apiUrl + 'rest-auth/registration/';
     return this.http.post(url, accountInfo, httpOptions).pipe(
       tap(_ => this.isLoggedIn = true),

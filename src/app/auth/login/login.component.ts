@@ -67,12 +67,24 @@ export class LoginComponent implements OnInit {
     this.restApi.login(auth)
     .subscribe(res => {
       localStorage.setItem('token', res.key);
-      this.cart.fetchUpdatedCart();
-      this.router.navigate([this.returnUrl]);
-      this.toast.showSuccess('Great', 'login Successful');
-      this.getUser();
-      this.getUserCart();
-      console.log(res);
+
+      if (res.status === 400 ){
+        this.toast.showError('Oops', 'Something went wrong, cant use credentials');
+      }
+
+      if (res.status === 403){
+        this.toast.showError('Oops', 'Something went wrong during login');
+      }
+
+      if (res.status === 200){
+        this.cart.fetchUpdatedCart();
+        this.router.navigate([this.returnUrl]);
+        this.toast.showSuccess('Great', 'login Successful');
+        this.getUser();
+        this.getUserCart();
+      }
+      
+      console.log(res.status);
     }, err => {
       console.log(err);
       this.toast.showError('Oops', 'Something went wrong during login');
